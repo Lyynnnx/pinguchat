@@ -1,5 +1,3 @@
-
-
 import 'package:uuid/uuid.dart';
 
 class Task{
@@ -9,9 +7,8 @@ class Task{
     String? id,
   }): id = id ?? const Uuid().v4();
   final String text;
-  final bool isDone;
+   bool isDone;
   final String id;
-
 
   
 }

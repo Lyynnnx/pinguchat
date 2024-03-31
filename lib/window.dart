@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pinguchat/models/task.dart';
+import 'package:pinguchat/providers/chat_provider.dart';
 
-class ForumScreen extends StatelessWidget {
+class ForumScreen extends ConsumerStatefulWidget {
   const ForumScreen({super.key});
 
   @override
+  ConsumerState<ForumScreen> createState() => _ForumScreenState();
+}
+
+class _ForumScreenState extends ConsumerState<ForumScreen> {
+  @override
   Widget build(BuildContext context) {
-    List<Task> tasks = [
-      Task(isDone: true, text: "Hello", id: "1"),
-      Task(isDone: false, text: "World", id: "2")
-    ];
+    List<Task> tasks = ref.read(TaskListProvider);
 
     return Scaffold(
       appBar: AppBar(
