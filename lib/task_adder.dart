@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TaskAdder extends StatefulWidget {
-  TaskAdder({super.key});
+  const TaskAdder({super.key});
 
   @override
   State<TaskAdder> createState() => _TaskAdderState();
@@ -22,9 +22,9 @@ class _TaskAdderState extends State<TaskAdder> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             TextField(controller: inputController),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Switch(
@@ -34,7 +34,7 @@ class _TaskAdderState extends State<TaskAdder> {
                     _isDone = value;
                   });
                 }),
-            ElevatedButton(child: Text("Submit"), onPressed: submit),
+            ElevatedButton(onPressed: submit, child: const Text("Submit")),
           ],
         ),
       ),
