@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pinguchat/models/task.dart';
+import 'package:pinguchat/providers/chat_provider.dart';
 
-class TaskAdder extends StatefulWidget {
+class TaskAdder extends ConsumerStatefulWidget {
   const TaskAdder({super.key});
 
   @override
-  State<TaskAdder> createState() => _TaskAdderState();
+  ConsumerState<TaskAdder> createState() => _TaskAdderState();
 }
 
-class _TaskAdderState extends State<TaskAdder> {
+class _TaskAdderState extends ConsumerState<TaskAdder> {
   TextEditingController inputController = TextEditingController();
 
   bool _isDone = false;
 
   void submit() {
+    
+    final task = Task(text: inputController.text, isDone: _isDone);
+    ref.read(TaskListProvider.notifier).addTask(task);
     Navigator.of(context).pop();
   }
 
