@@ -32,30 +32,32 @@ class _ForumScreenState extends ConsumerState<ForumScreen> {
           ),
         ],
       ),
-      body: Center(
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return Dismissible(
-              background: Container(
-                  color: Colors.green, child: const Icon(Icons.delete)),
-              key: Key(tasks[index].id),
-              onDismissed: (direction) {
-                ref.read(taskListProvider.notifier).removeTask(index);
+      body: tasks.isEmpty
+          ? const Center(
+              child: Text("add some tasks"),
+            )
+          : ListView.builder(
+              itemBuilder: (context, index) {
+                return Dismissible(
+                  background: Container(
+                      color: Colors.green, child: const Icon(Icons.delete)),
+                  key: Key(tasks[index].id),
+                  onDismissed: (direction) {
+                    ref.read(taskListProvider.notifier).removeTask(index);
+                  },
+                  child: ListTile(
+                    title: (Text(tasks[index].text)),
+                    trailing: tasks[index].isDone
+                        ? const Icon(Icons.check_box)
+                        : const Icon(Icons.check_box_outline_blank),
+                    onTap: () {
+                      changeToDo(ref, index);
+                    },
+                  ),
+                );
               },
-              child: ListTile(
-                title: (Text(tasks[index].text)),
-                trailing: tasks[index].isDone
-                    ? const Icon(Icons.check_box)
-                    : const Icon(Icons.check_box_outline_blank),
-                onTap: () {
-                  changeToDo(ref, index);
-                },
-              ),
-            );
-          },
-          itemCount: tasks.length,
-        ),
-      ),
+              itemCount: tasks.length,
+            ),
     );
   }
 }

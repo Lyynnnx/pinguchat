@@ -2,11 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pinguchat/models/task.dart';
 
 class TaskListNotifier extends StateNotifier<List<Task>> {
-  TaskListNotifier()
-      : super([
-          Task(text: "Hello", isDone: false),
-          Task(text: "World", isDone: true)
-        ]);
+  TaskListNotifier() : super([]);
 
   void addTask(Task task) {
     state = [task, ...state];
