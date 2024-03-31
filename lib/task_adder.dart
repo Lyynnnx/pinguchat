@@ -16,9 +16,8 @@ class _TaskAdderState extends ConsumerState<TaskAdder> {
   bool _isDone = false;
 
   void submit() {
-    
     final task = Task(text: inputController.text, isDone: _isDone);
-    ref.read(TaskListProvider.notifier).addTask(task);
+    ref.read(taskListProvider.notifier).addTask(task);
     Navigator.of(context).pop();
   }
 

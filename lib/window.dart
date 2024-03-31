@@ -11,16 +11,13 @@ class ForumScreen extends ConsumerStatefulWidget {
 }
 
 class _ForumScreenState extends ConsumerState<ForumScreen> {
-
-
-  void changeToDo(WidgetRef ref, int index){
-    ref.read(TaskListProvider.notifier).changeToDo(index);
-    setState((){});
+  void changeToDo(WidgetRef ref, int index) {
+    ref.read(taskListProvider.notifier).changeToDo(index);
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Task> tasks = ref.watch(TaskListProvider);
+    List<Task> tasks = ref.watch(taskListProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -39,10 +36,11 @@ class _ForumScreenState extends ConsumerState<ForumScreen> {
         child: ListView.builder(
           itemBuilder: (context, index) {
             return Dismissible(
-              background: Container(color:Colors.green, child: Icon(Icons.delete)),
+              background: Container(
+                  color: Colors.green, child: const Icon(Icons.delete)),
               key: Key(tasks[index].id),
-              onDismissed: (direction ){
-              ref.read(TaskListProvider.notifier).removeTask(index);
+              onDismissed: (direction) {
+                ref.read(taskListProvider.notifier).removeTask(index);
               },
               child: ListTile(
                 title: (Text(tasks[index].text)),
