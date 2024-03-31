@@ -4,7 +4,7 @@ import 'package:pinguchat/task_adder.dart';
 import 'package:pinguchat/window.dart';
 
 void main() {
-  runApp(ProviderScope(child: const MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
